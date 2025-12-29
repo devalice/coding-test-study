@@ -8,34 +8,35 @@ import java.util.Deque;
 import java.util.StringTokenizer;
 
 public class StackProblem01 {
-    public static void main(String[] args){
+
+    static StringBuilder sb = new StringBuilder();
+
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        try{
-            int num = Integer.parseInt(br.readLine());
 
-            String[] commands = new String[num];
-            for(int i=0; i<num; i++){
-                commands[i] = br.readLine();
-            }
+        int num = Integer.parseInt(br.readLine());
 
-            Deque<Integer> stack = new ArrayDeque<>();
-            for (String command : commands) {
-                if (command.contains("push")) {
-                    push(command, stack);
-                } else if (command.equals("top")) {
-                    isTop(stack);
-                } else if (command.equals("size")) {
-                    System.out.println(stack.size());
-                } else if (command.equals("empty")) {
-                    isEmpty(stack);
-                } else if (command.equals("pop")) {
-                    pop(stack);
-                }
-            }
-
-        }catch (IOException e){
-            System.out.println(e.getMessage());
+        String[] commands = new String[num];
+        for(int i=0; i<num; i++){
+            commands[i] = br.readLine();
         }
+
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (String command : commands) {
+            if (command.startsWith("push")) {
+                push(command, stack);
+            } else if (command.equals("top")) {
+                isTop(stack);
+            } else if (command.equals("size")) {
+                sb.append(stack.size()).append("\n");
+            } else if (command.equals("empty")) {
+                isEmpty(stack);
+            } else if (command.equals("pop")) {
+                pop(stack);
+            }
+        }
+
+        System.out.print(sb);
     }
 
     private static void push(String command, Deque<Integer> stack) {
@@ -46,25 +47,25 @@ public class StackProblem01 {
 
     private static void pop(Deque<Integer> stack) {
         if (stack.isEmpty()) {
-            System.out.println("-1");
+            sb.append("-1\n");
         } else {
-            System.out.println(stack.pop());
+            sb.append(stack.pop()).append("\n");
         }
     }
 
     private static void isTop(Deque<Integer> stack) {
         if (stack.isEmpty()) {
-            System.out.println("-1");
+            sb.append("-1\n");
         } else {
-            System.out.println(stack.peek());
+            sb.append(stack.peek()).append("\n");
         }
     }
 
     private static void isEmpty(Deque<Integer> stack) {
         if(stack.isEmpty()){
-            System.out.println("1");
+            sb.append("1\n");
         }else{
-            System.out.println("0");
+            sb.append("0\n");
         }
     }
 
