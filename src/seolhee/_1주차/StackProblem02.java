@@ -4,7 +4,6 @@ import java.util.*;
 
 public class StackProblem02 {
     public static int[] solution(int []arr) {
-
         ArrayList<Integer> list = new ArrayList<>();
         Deque<Integer> stack = new ArrayDeque<>();
         for (int ar : arr) {
@@ -19,12 +18,7 @@ public class StackProblem02 {
         }
         list.add(stack.pop());
 
-        int[] answer = new int[list.size()];
-        for(int i=0; i<answer.length; i++){
-            answer[i] = list.get(i);
-        }
-
-        return answer;
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 
     public static void main(String[] args){
