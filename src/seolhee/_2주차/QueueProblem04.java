@@ -14,19 +14,19 @@ public class QueueProblem04 {
         int callCnt = 0; // 실행 번호
         while(!queue.isEmpty()){
             int qFirst = queue.poll();
-            boolean isPoll = true;
+            boolean onlyPoll = true;
 
             // 큐 대기열에 더 큰 값이 있으면 현재 값 뒤로 보낸다
             for(int q : queue){
                 if(qFirst < q){
                     queue.offer(qFirst);
-                    isPoll = false;
+                    onlyPoll = false;
                     break;
                 }
             }
 
             // 대기열에 더 큰 값이 없으면 실행
-            if(isPoll){
+            if(onlyPoll){
                 callCnt++;
                 if(location == 0){
                     return callCnt;
